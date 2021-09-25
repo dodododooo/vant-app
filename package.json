@@ -1,0 +1,24 @@
+{
+  "name": "vant-app",
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "vue-tsc --noEmit && vite build",
+    "serve": "vite preview"
+  },
+  "dependencies": {
+    "axios": "^0.21.4",
+    "my-common-css": "0.0.4",
+    "vant": "^3.2.3",
+    "vue": "^3.2.13",
+    "vue-router": "^4.0.11",
+    "vuex": "^4.0.2"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^1.9.0",
+    "sass": "^1.42.1",
+    "typescript": "^4.4.3",
+    "vite": "^2.5.10",
+    "vue-tsc": "^0.3.0"
+  }
+}
