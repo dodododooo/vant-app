@@ -9,6 +9,7 @@
   "dependencies": {
     "axios": "^0.21.4",
     "my-common-css": "0.0.4",
+    "pinia": "^2.0.0-rc.9",
     "vant": "^3.2.3",
     "vue": "^3.2.13",
     "vue-router": "^4.0.11",

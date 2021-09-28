@@ -11,7 +11,7 @@ const routes: Array<RouteRecordRaw> = [
 ]
 
 for (const path in files) {
-  if (/component|module|util/i.test(path)) break; // 过滤组件, hooks
+  if (/component|module|util|use(?!r[\/\.])/i.test(path)) break; // 过滤组件, hooks(排除user路径)
   const module = (await files[path]()).default;
   if (!module.name) throw new Error('page module must have a name');
   const name = module.name;
