@@ -1,8 +1,8 @@
 import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router';
-import { store } from '@store';
+import { useSystemStore } from '@/store/system';
+const files = import.meta.glob('../views/*.vue');
 
 const aliveComponents: string[] = [];
-const files = import.meta.glob('../views/*.vue');
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
@@ -25,8 +25,7 @@ for (const path in files) {
   })
 }
 
-// 初始化全局state keepAliveComponents
-store.state.keepAliveComponents = aliveComponents.join(',');
+export const keepAliveComponents = aliveComponents.join(',');
 
 const router = createRouter({
   history: createWebHashHistory(),
@@ -50,7 +49,8 @@ const router = createRouter({
 })
 
 router.beforeEach((to) => {
-  if (to.meta.requiresAuth) {
+  const systemStore = useSystemStore();
+  if (to.meta.requiresAuth && !systemStore.isLogined) {
     document.title = '登录';
     return {
       path: '/Login',

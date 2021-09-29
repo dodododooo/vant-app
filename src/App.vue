@@ -1,7 +1,7 @@
 <template>
   <router-view v-slot="{ Component, route }">
     <transition :name="route.meta.transition || 'fade'" mode="out-in">
-      <keep-alive :include="aliveComponents">
+      <keep-alive :include="keepAliveComponents">
         <component
           :is="Component"
         />
@@ -10,19 +10,18 @@
   </router-view>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue';
-import { useStore } from '@store';
+<script setup lang="ts">
+// import { defineComponent } from 'vue';
+import { keepAliveComponents } from '@/router';
 
-export default defineComponent({
-  name: 'App',
-  setup() {
-    const store = useStore();
-    return {
-      aliveComponents: store.state.keepAliveComponents
-    }
-  }
-});
+// export default defineComponent({
+//   name: 'App',
+//   setup() {
+//     return {
+//       keepAliveComponents
+//     }
+//   }
+// });
 </script>
 
 <style>

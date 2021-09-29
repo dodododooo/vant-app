@@ -12,12 +12,7 @@
     "lib": ["esnext", "dom"],
     "baseUrl": ".",
     "paths": {
-      "@src/*": ["src/*"],
-      "@components": ["src/components"],
-      "@hooks": ["src/hooks"],
-      "@store": ["src/store"],
-      "@router": ["src/router"],
-      "@utils": ["src/plugins/utils"],
+      "@/*": ["src/*"],
     }
   },
   "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"]
