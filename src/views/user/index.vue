@@ -10,12 +10,15 @@ import { defineComponent } from 'vue';
 export default defineComponent({
   name: 'User',
   components: {},
-  setup(props) {
+  setup() {
     // do something
-    
-  },
-})
-</script>
-<style scoped>
 
+  },
+});
+</script>
+
+<style scoped>
+a {
+  display: block;
+}
 </style>

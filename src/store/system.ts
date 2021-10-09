@@ -1,12 +1,12 @@
-import { defineStore } from "pinia";
+import { defineStore } from 'pinia';
 
-export const useSystemStore = defineStore('systemStore', {
-  state: () => {
-    return {
-      name: '',
-    }
-  },
+const systemStore = defineStore('systemStore', {
+  state: () => ({
+    name: '',
+  }),
   getters: {
-    isLogined: () => true
-  }
-})
+    isLogined: () => true,
+  },
+});
+
+export default systemStore;

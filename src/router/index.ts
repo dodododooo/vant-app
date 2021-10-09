@@ -1,52 +1,60 @@
-import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router';
-import { useSystemStore } from '@/store/system';
-const files = import.meta.glob('../views/*.vue');
+import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
+import useSystemStore from '@/store/system';
+
+const files = import.meta.glob('../views/**/*.vue');
+
+console.log(files);
 
 const aliveComponents: string[] = [];
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
-    redirect: '/Home'
+    redirect: '/Home',
   },
-]
+];
 
+// eslint-disable-next-line no-restricted-syntax
 for (const path in files) {
-  if (/component|module|util|use(?!r[\/\.])/i.test(path)) break; // 过滤组件, hooks(排除user路径)
-  const module = (await files[path]()).default;
-  if (!module.name) throw new Error('page module must have a name');
-  const name = module.name;
-  const meta = Object.assign({title: name}, module.routeMeta);
-  if (meta.keepAlive) aliveComponents.push(name);
-  routes.push({
-    path: `/${name}`,
-    name: name,
-    component: module,
-    meta,
-  })
+  if (Object.prototype.hasOwnProperty.call(files, path)) {
+    if (/component|module|util|use(?!r[/.])/i.test(path)) break; // 过滤组件, hooks(排除user路径)
+    // eslint-disable-next-line no-await-in-loop
+    const module = (await files[path]()).default;
+    const { name } = module;
+    if (!name) throw new Error('page module must have a name');
+    const meta = { title: name, ...module.routeMeta };
+    if (meta.keepAlive) aliveComponents.push(name);
+    routes.push({
+      path: `/${name}`,
+      name,
+      component: files[path],
+      meta,
+    });
+  }
 }
+
+console.log(routes);
 
 export const keepAliveComponents = aliveComponents.join(',');
 
 const router = createRouter({
-  history: createWebHashHistory(),
+  history: createWebHistory(),
   routes,
-  scrollBehavior(to, from, savedPosition) {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  scrollBehavior(to, _, savedPosition) {
     let pos: any = null;
     if (to.hash) {
-      pos = { el: to.hash }
+      pos = { el: to.hash };
     } else if (savedPosition) {
-      pos = savedPosition
+      pos = savedPosition;
     } else {
-      pos = { top: 0 }
+      pos = { top: 0 };
     }
     return new Promise((resolve) => {
       setTimeout(() => {
-        resolve(pos)
-      }, 300)
-    })
+        resolve(pos);
+      }, 300);
+    });
   },
-})
+});
 
 router.beforeEach((to) => {
   const systemStore = useSystemStore();
@@ -56,9 +64,10 @@ router.beforeEach((to) => {
       path: '/Login',
       // 保存我们所在的位置，以便以后再来
       query: { redirect: to.fullPath },
-    }
+    };
   }
   document.title = <string>to.meta.title;
-})
+  return true;
+});
 
-export default router
+export default router;
