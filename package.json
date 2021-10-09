@@ -5,13 +5,13 @@
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build",
     "serve": "vite preview",
-    "prepare": "husky install",
     "lint": "prettier --check --ignore-unknown src/**/*.{vue,ts}",
-    "lint:fix": "prettier --write --ignore-unknown src/**/*.{vue,ts}"
+    "lint:fix": "prettier --write --ignore-unknown src/**/*.{vue,ts}",
+    "pretty-quick": "pretty-quick --staged"
   },
-  "lint-staged": {
-    "**/*": "prettier --write --ignore-unknown src/**/*.{vue,ts}"
-  },
+  "pre-commit": [
+    "pretty-quick"
+  ],
   "dependencies": {
     "axios": "^0.21.4",
     "my-common-css": "0.0.4",
@@ -31,10 +31,10 @@
     "eslint-plugin-import": "^2.24.2",
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-vue": "^7.19.1",
-    "husky": "^7.0.2",
-    "lint-staged": "^11.2.1",
     "mockjs": "^1.1.0",
-    "prettier": "2.4.1",
+    "pre-commit": "^1.2.2",
+    "prettier": "^2.4.1",
+    "pretty-quick": "^3.1.1",
     "sass": "^1.42.1",
     "typescript": "^4.4.3",
     "vite": "^2.5.10",
