@@ -5,10 +5,10 @@ export const timeFormat = (time: string | number | Date, format = 'yyyy/MM/dd hh
     date = time;
   } else if (/^\d{10}$/.test(`${time}`)) {
     // 1592531554 s
-    date = new Date((<number>time) * 1000);
+    date = new Date(<number>time * 1000);
   } else if (/^\d{13}$/.test(`${time}`)) {
     // ms
-    date = new Date((<number>time) - 0);
+    date = new Date(<number>time - 0);
   } else if (reg.test(`${time}`)) {
     // 2020-09-09 | 2020/09/09 | 2020-09-09 12:12:12 | 2020/09/09 12:12:12
     date = new Date(`${time}`.replace(/-/g, '/')); // IOS兼容
@@ -30,12 +30,12 @@ export const timeFormat = (time: string | number | Date, format = 'yyyy/MM/dd hh
     'q+': `${Math.floor((date.getMonth() + 3) / 3)}`, // quarter
     S: `${date.getMilliseconds()}`, // millisecond
   };
-  if (/(y+)/.test(format)) format = format.replace(RegExp.$1, (`${date.getFullYear()}`).substr(4 - RegExp.$1.length));
+  if (/(y+)/.test(format)) format = format.replace(RegExp.$1, `${date.getFullYear()}`.substr(4 - RegExp.$1.length));
   // eslint-disable-next-line no-restricted-syntax
   for (const k in o) {
     if (new RegExp(`(${k})`).test(format)) {
       const v: string = o[k];
-      format = format.replace(RegExp.$1, RegExp.$1.length === 1 ? v : (`00${v}`).substr((`${v}`).length));
+      format = format.replace(RegExp.$1, RegExp.$1.length === 1 ? v : `00${v}`.substr(`${v}`.length));
     }
   }
   return format;

@@ -1,10 +1,8 @@
 <template>
-  <div class="index">
-    User
-  </div>
+  <div class="index">User</div>
 </template>
 
-<script lang='ts'>
+<script lang="ts">
 import { defineComponent } from 'vue';
 
 export default defineComponent({
@@ -12,7 +10,6 @@ export default defineComponent({
   components: {},
   setup() {
     // do something
-
   },
 });
 </script>

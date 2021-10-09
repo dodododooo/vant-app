@@ -2,9 +2,7 @@
   <router-view v-slot="{ Component, route }">
     <transition :name="route.meta.transition || 'fade'" mode="out-in">
       <keep-alive :include="keepAliveComponents">
-        <component
-          :is="Component"
-        />
+        <component :is="Component" />
       </keep-alive>
     </transition>
   </router-view>
@@ -24,5 +22,4 @@ import { keepAliveComponents } from '@/router';
 // });
 </script>
 
-<style>
-</style>
+<style></style>

@@ -1,5 +1,3 @@
 import Mock from 'mockjs';
 
-Mock.mock(/\/api\/admin\/menus/, 'get', [
-  { a: 4 },
-]);
+Mock.mock(/\/api\/admin\/menus/, 'get', [{ a: 4 }]);

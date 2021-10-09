@@ -3,11 +3,8 @@ module.exports = {
   env: {
     node: true,
   },
-  extends: [
-    'plugin:vue/vue3-recommended',
-    'airbnb-base',
-  ],
-  plugins: ['vue'],
+  extends: ['plugin:vue/vue3-recommended', 'airbnb-base', 'plugin:prettier/recommended'],
+  plugins: ['prettier'],
   parser: 'vue-eslint-parser',
   parserOptions: {
     ecmaVersion: 2020,
@@ -15,6 +12,7 @@ module.exports = {
     sourceType: 'module',
   },
   rules: {
+    'prettier/prettier': 'error',
     eqeqeq: ['warn', 'always', { null: 'never' }],
     'no-console': process.env.VITE_USER_NODE_ENV === 'production' ? 'error' : 'off',
     'no-debugger': process.env.VITE_USER_NODE_ENV === 'production' ? 'error' : 'off',

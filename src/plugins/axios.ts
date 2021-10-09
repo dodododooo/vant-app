@@ -15,13 +15,13 @@ const instance = axios.create(config);
 
 instance.interceptors.request.use(
   (conf) => conf,
-  (err) => Promise.reject(err),
+  (err) => Promise.reject(err)
 );
 
 // Add a response interceptor
 instance.interceptors.response.use(
   (res) => res.data,
-  (err) => Promise.reject(err),
+  (err) => Promise.reject(err)
 );
 
 export default instance;

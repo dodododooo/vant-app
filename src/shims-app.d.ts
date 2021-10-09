@@ -1,12 +1,12 @@
 /* eslint-disable */
 // import { ComponentCustomProperties } from 'vue'
-import 'vue-router'
+import 'vue-router';
 // import { Store } from 'vuex'
-import axios from 'axios'
+import axios from 'axios';
 
 declare module '@vue/runtime-core' {
   export interface ComponentCustomProperties {
-    $http: typeof axios
+    $http: typeof axios;
     // $store: Store<State>
   }
 }
