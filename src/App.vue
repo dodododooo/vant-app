@@ -25,7 +25,7 @@ import { keepAliveComponents } from '@/router';
 <style>
 .a{
   display:inline ;
-  height:20px ;
-  width:3px ;
+  height:20px  ;
+  width:3px  ;
 }
 </style>
